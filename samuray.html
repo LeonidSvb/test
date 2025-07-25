@@ -650,4 +650,87 @@
 
         <!-- Samurai Quote -->
         <div class="samurai-quote">
-            <p class="quote-text">"Радуйся 
+            <p class="quote-text">"Радуйся навыку, а не рыбе. Профессиональный рыбак радуется тому, что знает, как и где ловить."</p>
+            <p class="quote-author">— Принцип мастерства самурая</p>
+        </div>
+
+        <!-- Practical Framework -->
+        <section class="section">
+            <div class="framework">
+                <h2 class="framework-title">Боевая система контроля</h2>
+                
+                <div class="framework-steps">
+                    <div class="framework-step">
+                        <span class="framework-step-number">1</span>
+                        <h3 class="framework-step-title">Установи расписание общения</h3>
+                        <p>Определи 1-2 временных окна в день для ответов. Никаких импульсивных проверок телефона.</p>
+                    </div>
+
+                    <div class="framework-step">
+                        <span class="framework-step-number">2</span>
+                        <h3 class="framework-step-title">Создай изобилие опций</h3>
+                        <p>Всегда поддерживай несколько активных контактов. Одна классная девушка → несколько классных девушек.</p>
+                    </div>
+
+                    <div class="framework-step">
+                        <span class="framework-step-number">3</span>
+                        <h3 class="framework-step-title">Фокусируйся на процессе</h3>
+                        <p>Радуйся развитию навыков коммуникации, а не конкретным ответам. Процесс важнее результата.</p>
+                    </div>
+
+                    <div class="framework-step">
+                        <span class="framework-step-number">4</span>
+                        <h3 class="framework-step-title">Превращай в рутину</h3>
+                        <p>То, что сейчас вызывает эмоции, должно стать обычной практикой. Как чистка зубов или тренировка.</p>
+                    </div>
+
+                    <div class="framework-step">
+                        <span class="framework-step-number">5</span>
+                        <h3 class="framework-step-title">Принимай флейки спокойно</h3>
+                        <p>Флейки — часть процесса. Не персонализируй отказы. Это статистика, а не приговор.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Section -->
+        <div class="warning-box">
+            <h3 class="warning-title">Ловушка новичка</h3>
+            <p>Пока ты находишься в ожидании, проверяешь телефон и эмоционально зависишь от ответов — девушки будут флейкать. Это энергетический закон: дефицит притягивает отказы, изобилие — притягивает интерес.</p>
+        </div>
+
+        <!-- Final Wisdom -->
+        <div class="final-wisdom">
+            <h2 class="wisdom-title">Путь самурая</h2>
+            <p class="wisdom-text">Сильный мужчина контролирует своё внутреннее состояние независимо от внешних обстоятельств.</p>
+            <p class="wisdom-text">Твоя сила — в способности сохранять равновесие, когда мир вокруг пытается вывести тебя из баланса.</p>
+            <p class="wisdom-text"><strong>Помни: ты тренируешь навык, а не гонишься за результатом.</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in class to elements and observe them
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.principle-card, .mindset-card, .framework-step, .stat-card');
+            elements.forEach(el => {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
