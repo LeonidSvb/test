@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контроль ожиданий - Психология воина</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #1a1a1a;
+            --accent-red: #dc2626;
+            --accent-gold: #fbbf24;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-subtle: #374151;
+            --gradient-samurai: linear-gradient(135deg, #dc2626, #991b1b, #7f1d1d);
+            --gradient-gold: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-black);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Hero */
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f172a 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .discipline-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient-samurai);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .discipline-badge::before {
+            content: '⚔️';
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            background: var(--gradient-samurai);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+        }
+
+        /* Core Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin: 48px 0;
+        }
+
+        .principle-card {
+            background: linear-gradient(135deg, var(--secondary-black), #262626);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-samurai);
+        }
+
+        .principle-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-red);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+        }
+
+        .principle-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .principle-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        /* Main Content Sections */
+        .section {
+            margin: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem-Solution Flow */
+        .problem-solution {
+            background: linear-gradient(135deg, var(--secondary-black), #1f2937);
+            border-radius: 24px;
+            padding: 48px;
+            margin: 48px 0;
+            position: relative;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .step-marker {
+            background: var(--gradient-samurai);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 24px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Mindset Infographic */
+        .mindset-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .mindset-card {
+            background: var(--secondary-black);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .weak-mindset {
+            border-color: #ef4444;
+        }
+
+        .weak-mindset::before {
+            content: '❌';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+        }
+
+        .strong-mindset {
+            border-color: var(--accent-gold);
+        }
+
+        .strong-mindset::before {
+            content: '⚔️';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+        }
+
+        .mindset-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .mindset-traits {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mindset-traits li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .weak-mindset .mindset-traits li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .strong-mindset .mindset-traits li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Quote Callout */
+        .samurai-quote {
+            background: var(--gradient-samurai);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .samurai-quote::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 16px;
+        }
+
+        .quote-author {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Practical Framework */
+        .framework {
+            background: linear-gradient(135deg, #1f2937, var(--secondary-black));
+            border-radius: 24px;
+            padding: 48px;
+            margin: 48px 0;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .framework-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .framework-steps {
+            display: grid;
+            gap: 24px;
+        }
+
+        .framework-step {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .framework-step:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(8px);
+        }
+
+        .framework-step-number {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-black);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            margin-right: 16px;
+            font-size: 0.9rem;
+        }
+
+        .framework-step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Statistics Visualization */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 48px 0;
+        }
+
+        .stat-card {
+            background: var(--secondary-black);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-red);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-samurai);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            position: relative;
+        }
+
+        .warning-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #fca5a5;
+        }
+
+        .warning-title::before {
+            content: '⚠️';
+            margin-right: 12px;
+            font-size: 1.6rem;
+        }
+
+        /* Final Wisdom */
+        .final-wisdom {
+            background: var(--gradient-samurai);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wisdom-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .wisdom-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mindset-comparison {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .problem-solution,
+            .framework {
+                padding: 32px 24px;
+            }
+            
+            h1 {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <div class="discipline-badge">Психология Воина</div>
+                <h1>Контроль Ожиданий</h1>
+                <p class="subtitle">Искусство внутреннего равновесия в эпоху цифровых отношений</p>
+                
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <span class="principle-icon">🎯</span>
+                        <h3 class="principle-title">Фокус на процесс</h3>
+                        <p>Радуйся навыку, а не результату. Рыбак радуется мастерству, а не улову.</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-icon">⚖️</span>
+                        <h3 class="principle-title">Изобилие vs дефицит</h3>
+                        <p>Один номер — это начало. Несколько миллиардов женщин — это реальность.</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-icon">🛡️</span>
+                        <h3 class="principle-title">Эмоциональная броня</h3>
+                        <p>Превращение импульсов в рутину. Контроль вместо реакции.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Problem Analysis -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Анатомия проблемы</h2>
+                <p class="section-subtitle">Почему ожидание сообщений разрушает твою силу</p>
+            </div>
+
+            <div class="problem-solution">
+                <div class="flow-step">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Ожидание = Энергетическая утечка</h3>
+                        <p class="step-description">Постоянная проверка телефона, жажда ответа — это потеря контроля над собственным состоянием. Ты передаёшь власть над своими эмоциями внешним факторам.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Дефицитное мышление</h3>
+                        <p class="step-description">Когда у тебя один "классный номер", ты автоматически попадаешь в ловушку. Вся энергия фокусируется на одной точке, создавая нездоровую зависимость.</p>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Эмоциональные качели</h3>
+                        <p class="step-description">Радость от ответа → разочарование от молчания → нервозность → повторение цикла. Это разрушает твою внутреннюю стабильность.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mindset Comparison -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">Два типа воинов</h2>
+                <p class="section-subtitle">Слабый vs сильный mindset в цифровых отношениях</p>
+            </div>
+
+            <div class="mindset-comparison">
+                <div class="mindset-card weak-mindset">
+                    <h3 class="mindset-title">Слабый воин (новичок)</h3>
+                    <ul class="mindset-traits">
+                        <li>Постоянно проверяет телефон</li>
+                        <li>Радуется каждому ответу</li>
+                        <li>Фокусируется на одной девушке</li>
+                        <li>Ждёт мгновенных ответов</li>
+                        <li>Эмоционально зависим от реакций</li>
+                        <li>Воспринимает флейки как личную катастрофу</li>
+                        <li>Теряет уверенность от одного отказа</li>
+                    </ul>
+                </div>
+
+                <div class="mindset-card strong-mindset">
+                    <h3 class="mindset-title">Сильный воин (мастер)</h3>
+                    <ul class="mindset-traits">
+                        <li>Отвечает по расписанию</li>
+                        <li>Радуется развитию навыков</li>
+                        <li>Поддерживает несколько опций</li>
+                        <li>Контролирует ритм общения</li>
+                        <li>Эмоционально независим</li>
+                        <li>Воспринимает флейки как часть процесса</li>
+                        <li>Уверенность основана на изобилии</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Миллиардов женщин</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">333</div>
+                    <div class="stat-label">Дней практики</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1x</div>
+                    <div class="stat-label">Ответ в день</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Ожиданий</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Samurai Quote -->
+        <div class="samurai-quote">
+            <p class="quote-text">"Радуйся 
