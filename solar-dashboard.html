@@ -25,7 +25,6 @@
             --text-gray: #64748b;
             --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
             --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         body {
@@ -37,12 +36,12 @@
         }
 
         .dashboard-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Header Styles */
+        /* Header */
         .header {
             background: var(--primary-white);
             border-radius: 24px;
@@ -59,13 +58,12 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             background: linear-gradient(135deg, var(--accent-green), var(--tropical-gold));
             border-radius: 50%;
-            opacity: 0.1;
-            transform: translate(50%, -50%);
-            animation: pulse 4s ease-in-out infinite;
+            opacity: 0.08;
+            transform: translate(40%, -40%);
         }
 
         .header h1 {
@@ -82,7 +80,6 @@
         .header p {
             color: var(--text-gray);
             font-size: 1.1rem;
-            font-weight: 400;
             position: relative;
             z-index: 2;
         }
@@ -97,12 +94,12 @@
         }
 
         .info-card {
-            background: linear-gradient(135deg, var(--primary-white), var(--light-gray));
+            background: var(--primary-white);
             border: 1px solid var(--border-gray);
             padding: 24px;
             border-radius: 20px;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -114,18 +111,11 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), var(--tropical-gold), var(--ocean-blue));
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .info-card:hover::before {
-            transform: translateX(0);
+            background: linear-gradient(90deg, var(--accent-green), var(--tropical-gold));
         }
 
         .info-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
+            transform: translateY(-4px);
         }
 
         .info-card h3 {
@@ -143,7 +133,7 @@
             color: var(--soft-black);
         }
 
-        /* Metrics Row */
+        /* Metrics */
         .metrics-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -158,38 +148,17 @@
             text-align: center;
             box-shadow: var(--shadow-soft);
             border: 1px solid var(--border-gray);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .metric-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-green), var(--tropical-gold));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .metric-card:hover::after {
-            transform: scaleX(1);
+            transition: transform 0.2s ease;
         }
 
         .metric-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
         }
 
         .metric-value {
             font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 700;
             margin: 16px 0;
-            animation: fadeInUp 0.8s ease;
         }
 
         .metric-label {
@@ -198,71 +167,34 @@
             font-weight: 500;
         }
 
-        .profit {
-            color: var(--accent-green);
-        }
+        .profit { color: var(--accent-green); }
+        .revenue { color: var(--ocean-blue); }
+        .occupancy { color: var(--tropical-gold); }
 
-        .revenue {
-            color: var(--ocean-blue);
-        }
-
-        .occupancy {
-            color: var(--tropical-gold);
-        }
-
-        /* Dashboard Grid */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 32px;
-            margin-bottom: 40px;
-        }
-
-        .card {
+        /* Chart Sections */
+        .chart-section {
             background: var(--primary-white);
             border-radius: 24px;
-            padding: 32px;
+            padding: 40px;
+            margin-bottom: 40px;
             box-shadow: var(--shadow-soft);
             border: 1px solid var(--border-gray);
-            transition: all 0.3s ease;
-            position: relative;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .card h2 {
+        .chart-section h2 {
             color: var(--soft-black);
             margin-bottom: 24px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .chart-container {
             position: relative;
-            height: 300px;
-            margin: 24px 0;
+            height: 400px;
+            width: 100%;
         }
 
         /* Telegram Section */
@@ -282,8 +214,7 @@
             top: 20px;
             right: 20px;
             font-size: 2rem;
-            opacity: 0.3;
-            animation: sway 3s ease-in-out infinite;
+            opacity: 0.2;
         }
 
         .telegram-notification {
@@ -292,29 +223,13 @@
             border-radius: 20px;
             padding: 24px;
             margin: 20px 0;
-            position: relative;
-            overflow: hidden;
             border-left: 4px solid var(--accent-green);
-            animation: slideInLeft 0.6s ease;
-        }
-
-        .telegram-notification::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, var(--accent-green) 0%, transparent 70%);
-            opacity: 0.1;
-            border-radius: 50%;
         }
 
         .notification-title {
             font-weight: 600;
             margin-bottom: 12px;
             font-size: 1.1rem;
-            color: var(--primary-white);
         }
 
         /* Feature Cards */
@@ -322,7 +237,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            margin-top: 40px;
         }
 
         .feature-card {
@@ -331,36 +245,17 @@
             padding: 32px;
             box-shadow: var(--shadow-soft);
             border: 1px solid var(--border-gray);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.05), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
+            transition: transform 0.2s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-4px);
         }
 
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
             display: block;
-            animation: bounce 2s infinite;
         }
 
         .feature-title {
@@ -373,7 +268,6 @@
         .feature-description {
             color: var(--text-gray);
             line-height: 1.6;
-            font-weight: 400;
         }
 
         .status-indicator {
@@ -382,70 +276,10 @@
             height: 10px;
             border-radius: 50%;
             margin-right: 8px;
-            animation: pulse 2s infinite;
         }
 
         .status-active {
             background-color: var(--accent-green);
-        }
-
-        .status-warning {
-            background-color: var(--tropical-gold);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-4px);
-            }
-            60% {
-                transform: translateY(-2px);
-            }
-        }
-
-        @keyframes sway {
-            0%, 100% {
-                transform: rotate(-2deg);
-            }
-            50% {
-                transform: rotate(2deg);
-            }
         }
 
         /* Mobile Responsive */
@@ -456,61 +290,33 @@
 
             .header {
                 padding: 24px;
-                margin-bottom: 24px;
             }
 
             .property-info {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
-                margin-top: 24px;
-            }
-
-            .info-card {
-                padding: 20px;
             }
 
             .metrics-row {
                 grid-template-columns: 1fr;
                 gap: 20px;
-                margin-bottom: 32px;
             }
 
-            .metric-card {
-                padding: 24px;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                margin-bottom: 32px;
-            }
-
-            .card {
+            .chart-section {
                 padding: 24px;
             }
 
             .chart-container {
-                height: 250px;
+                height: 300px;
             }
 
             .telegram-section {
                 padding: 24px;
-                margin-bottom: 32px;
-            }
-
-            .telegram-notification {
-                padding: 20px;
-                margin: 16px 0;
             }
 
             .automation-features {
                 grid-template-columns: 1fr;
                 gap: 20px;
-                margin-top: 32px;
-            }
-
-            .feature-card {
-                padding: 24px;
             }
         }
 
@@ -519,40 +325,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .metric-value {
-                font-size: 1.8rem;
-            }
-
             .chart-container {
-                height: 220px;
+                height: 250px;
             }
-        }
-
-        /* Loading Animation */
-        .chart-loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            color: var(--text-gray);
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border-gray);
-            border-top: 3px solid var(--accent-green);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -602,40 +377,39 @@
             </div>
         </div>
 
-        <!-- Charts -->
-        <div class="dashboard-grid">
-            <div class="card">
-                <h2>📊 Динамика доходов по месяцам</h2>
-                <div class="chart-container">
-                    <canvas id="revenueChart"></canvas>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>📈 Загрузка и прибыльность</h2>
-                <div class="chart-container">
-                    <canvas id="occupancyChart"></canvas>
-                </div>
+        <!-- Revenue Chart -->
+        <div class="chart-section">
+            <h2>📊 Динамика доходов по месяцам</h2>
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
             </div>
         </div>
 
-        <div class="dashboard-grid">
-            <div class="card">
-                <h2>💰 Структура расходов</h2>
-                <div class="chart-container">
-                    <canvas id="expensesChart"></canvas>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h2>🎯 Прогноз vs Факт</h2>
-                <div class="chart-container">
-                    <canvas id="forecastChart"></canvas>
-                </div>
+        <!-- Occupancy Chart -->
+        <div class="chart-section">
+            <h2>📈 Загрузка и прибыльность</h2>
+            <div class="chart-container">
+                <canvas id="occupancyChart"></canvas>
             </div>
         </div>
 
-        <!-- Telegram Notifications Section -->
+        <!-- Expenses Chart -->
+        <div class="chart-section">
+            <h2>💰 Структура расходов</h2>
+            <div class="chart-container">
+                <canvas id="expensesChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Forecast Chart -->
+        <div class="chart-section">
+            <h2>🎯 Прогноз vs Факт</h2>
+            <div class="chart-container">
+                <canvas id="forecastChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Telegram Notifications -->
         <div class="telegram-section">
             <h2 style="margin-bottom: 16px; color: var(--soft-black); font-weight: 600;">📱 Автоматические уведомления в Telegram</h2>
             <p style="margin-bottom: 32px; color: var(--text-gray);">Инвесторы получают персонализированные отчеты автоматически</p>
@@ -729,249 +503,196 @@
     </div>
 
     <script>
-        // Chart.js default configuration
-        Chart.defaults.font.family = 'Inter';
-        Chart.defaults.font.size = 12;
-        Chart.defaults.color = '#64748b';
-
-        // Revenue Chart
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(revenueCtx, {
-            type: 'line',
-            data: {
-                labels: ['Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
-                datasets: [{
-                    label: 'Доход (Rp)',
-                    data: [5902, 15390, 18935, 17439, 18561, 16839, 5806, 15794, 7200, 22497, 24655, 20000],
-                    borderColor: '#0ea5e9',
-                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#0ea5e9',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 3,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        border: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        border: {
-                            display: false
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return 'Rp ' + (value/1000) + 'K';
-                            }
-                        }
-                    }
-                },
-                elements: {
-                    point: {
-                        hoverBackgroundColor: '#0ea5e9'
-                    }
-                }
-            }
-        });
-
-        // Occupancy Chart
-        const occupancyCtx = document.getElementById('occupancyChart').getContext('2d');
-        new Chart(occupancyCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
-                datasets: [{
-                    label: 'Загрузка (%)',
-                    data: [100, 83.87, 100, 100, 100, 100, 29.03, 77.42, 32.14, 100, 93.33, 70],
-                    backgroundColor: '#f59e0b',
-                    borderColor: '#f59e0b',
-                    borderWidth: 0,
-                    borderRadius: 8,
-                    borderSkipped: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        border: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        border: {
-                            display: false
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Expenses Chart
-        const expensesCtx = document.getElementById('expensesChart').getContext('2d');
-        new Chart(expensesCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Обслуживание', 'Операционные расходы', 'Коммунальные услуги', 'Комиссии', 'Прочее'],
-                datasets: [{
-                    data: [26965, 5810, 3800, 16730, 624],
-                    backgroundColor: [
-                        '#0f0f0f',
-                        '#64748b',
-                        '#10b981',
-                        '#0ea5e9',
-                        '#f59e0b'
-                    ],
-                    borderWidth: 0,
-                    cutout: '60%'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            usePointStyle: true,
-                            padding: 20,
-                            font: {
-                                size: 11
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Forecast Chart
-        const forecastCtx = document.getElementById('forecastChart').getContext('2d');
-        new Chart(forecastCtx, {
-            type: 'line',
-            data: {
-                labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь'],
-                datasets: [{
-                    label: 'Факт',
-                    data: [8401, 1482, 8294, 9424, null, null],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointBackgroundColor: '#10b981',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 3,
-                    pointRadius: 6
-                }, {
-                    label: 'Прогноз',
-                    data: [null, null, null, null, 11720, 11720],
-                    borderColor: '#f59e0b',
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                    borderDash: [8, 4],
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointBackgroundColor: '#f59e0b',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 3,
-                    pointRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: {
-                            usePointStyle: true,
-                            padding: 20
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        border: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: '#f1f5f9'
-                        },
-                        border: {
-                            display: false
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return 'Rp ' + (value/1000) + 'K';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Add loading animations
+        // Wait for DOM and Chart.js to load
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.metric-card, .feature-card, .info-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('animate-in');
-            });
-        });
+            // Chart configuration
+            Chart.defaults.font.family = 'Inter';
+            Chart.defaults.font.size = 12;
+            Chart.defaults.color = '#64748b';
 
-        // Add CSS for animate-in class
-        const style = document.createElement('style');
-        style.textContent = `
-            .animate-in {
-                animation: fadeInUp 0.6s ease forwards;
+            // Revenue Chart
+            const revenueCanvas = document.getElementById('revenueChart');
+            if (revenueCanvas) {
+                new Chart(revenueCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: ['Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
+                        datasets: [{
+                            label: 'Доход (Rp)',
+                            data: [5902, 15390, 18935, 17439, 18561, 16839, 5806, 15794, 7200, 22497, 24655, 20000],
+                            borderColor: '#0ea5e9',
+                            backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: '#0ea5e9',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false },
+                                border: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f1f5f9' },
+                                border: { display: false },
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Rp ' + (value/1000) + 'K';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             }
-        `;
-        document.head.appendChild(style);
+
+            // Occupancy Chart
+            const occupancyCanvas = document.getElementById('occupancyChart');
+            if (occupancyCanvas) {
+                new Chart(occupancyCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май'],
+                        datasets: [{
+                            label: 'Загрузка (%)',
+                            data: [100, 83.87, 100, 100, 100, 100, 29.03, 77.42, 32.14, 100, 93.33, 70],
+                            backgroundColor: '#f59e0b',
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false },
+                                border: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: { color: '#f1f5f9' },
+                                border: { display: false },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Expenses Chart
+            const expensesCanvas = document.getElementById('expensesChart');
+            if (expensesCanvas) {
+                new Chart(expensesCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Обслуживание', 'Операционные расходы', 'Коммунальные услуги', 'Комиссии', 'Прочее'],
+                        datasets: [{
+                            data: [26965, 5810, 3800, 16730, 624],
+                            backgroundColor: ['#0f0f0f', '#64748b', '#10b981', '#0ea5e9', '#f59e0b'],
+                            borderWidth: 0,
+                            cutout: '60%'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 15
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Forecast Chart
+            const forecastCanvas = document.getElementById('forecastChart');
+            if (forecastCanvas) {
+                new Chart(forecastCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь'],
+                        datasets: [{
+                            label: 'Факт',
+                            data: [8401, 1482, 8294, 9424, null, null],
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            pointBackgroundColor: '#10b981',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }, {
+                            label: 'Прогноз',
+                            data: [null, null, null, null, 11720, 11720],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            borderDash: [8, 4],
+                            borderWidth: 3,
+                            tension: 0.4,
+                            pointBackgroundColor: '#f59e0b',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 20
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false },
+                                border: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f1f5f9' },
+                                border: { display: false },
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Rp ' + (value/1000) + 'K';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
